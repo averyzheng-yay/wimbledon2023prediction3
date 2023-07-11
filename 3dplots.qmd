@@ -1,0 +1,18 @@
+---
+title: "3D Plots"
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(readxl)
+library(rayshader)
+library(rgl)
+```
+
+```{r}
+
+```
+
