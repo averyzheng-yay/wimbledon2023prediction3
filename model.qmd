@@ -1,0 +1,14 @@
+---
+title: "Model"
+editor: visual
+---
+
+This prediction was based on a formula that weighed the total number of matches won/lost, number of upsets (where either the player beat someone of higher ranking or was beaten by someone with lower ranking), and total number of sets. The largest factor by far was the overall match record, and upsets and sets won/lost were worth a fraction of a single match. It also weighed matches played on the same surface as Wimbledon (grass) 2.5 times as much as those played on clay and hard court, and matches from more recent seasons more heavily (halving every year). 
+
+### Formula: {#section1}
+$$y_{odds} = \frac{5}{2} \cdot x_{grass} + 1 \cdot x_{hard} + 1 \cdot x_{clay},$$ 
+where $x_i = 50 \cdot (a_i - b_i) + 2 \cdot (c_i - d_i) + \frac{1}{2} \cdot (e_i - f_i)$, for $i =$ {grass, hard, clay}. For each surface $i$, $a_i =$ number of wins, $b_i =$ number of losses, $c_i =$ number of upsets, $d_i =$ number of time the player was upset, $e_i =$ total number of sets won, and $f_i =$ total number of sets lost.
+
+After the probability was determined for each player, a model predicting the probability of winning the entire tournament was run to determine the confidence intervals, which was then graphed (as seen on the front page).
+
+While I believe this prediction to be fairly accurate, as with all predictive models, especially in sports, there are numerous other factors that have not been considered. For example, it does not include the full match history of every player, which undermines those like Djokovic (who has had an impresssive 20-year career to say the least) and wildcards like  Svitolina (who spent time away from the sport due to personal reasons). 

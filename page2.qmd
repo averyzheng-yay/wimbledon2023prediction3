@@ -1,0 +1,71 @@
+---
+title: "Women's Stats"
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| message: false
+library(tidyverse)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+all_stats_by_year <- read_csv("csvs/all_statsw.csv")
+all_stats <- all_stats_by_year |>
+  summarize(num_wins = sum(num_wins),
+            num_losses = sum(num_losses),
+            num_upsets = sum(num_upsets),
+            num_was_upset = sum(num_was_upset),
+            sets_won = sum(sets_won),
+            sets_lost = sum(sets_lost),
+            avg_sets_lost = mean(avg_sets_lost),
+            .by = c(name, surface))
+
+ten_players <- c("swiatek i.", "sabalenka a.", "jabeur o.", "ostapenko j.", "rybakina e.", "kvitova p.", "garcia c.", "pegula j.", "bencic b.", "alexandrova e.")
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| label: graph1
+all_stats |>
+  mutate(win_percentage = num_wins / (num_wins + num_losses)) |>
+  select(name, surface, win_percentage) |>
+  filter(name %in% ten_players) |>
+  group_by(name) |>
+  ggplot(aes(x = reorder(name, -win_percentage), y = win_percentage, fill = surface)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black", width = 0.65) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_x_discrete(labels = c("I. Swiatek", "O. Jabeur", "A. Sabalenka", "E. Rybakina", "B. Bencic", "P. Kvitova", "J. Ostapenko", "J. Pegula", "E. Alexandrova", "C. Garcia")) +
+  scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), 
+                     labels = scales::percent_format()) +
+  labs(x = "", y = "Win Percentage",
+       title = "Win Percentage of the Top Ten Front Runners",
+       fill = "Surface")
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| label: graph2
+#change this graph to "average number of sets lost in matches they've won"
+all_stats |>
+  select(name, surface, avg_sets_lost) |>
+  filter(name %in% ten_players) |>
+  group_by(name) |>
+  ggplot(aes(x = reorder(name, avg_sets_lost), y = avg_sets_lost, fill = surface)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black", width = 0.65) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_x_discrete(labels = c("E. Rybakina", "I. Swiatek", "E. Alexandrova", "A. Sabalenka", "P. Kvitova", "J. Pegula", "O. Jabeur", "J. Ostapenko", "B. Bencic", "C. Garcia")) +
+  labs(x = "", y = "Sets",
+       title = "Average Number of Sets Lost in Matches Won",
+       fill = "Surface") +
+  scale_y_continuous(breaks = c(0.0, 0.1, 0.2, 0.3, 0.4, 0.5))
+```
+
+Disclaimer: These statistics are only drawn from the past three seasons (2021-2023).

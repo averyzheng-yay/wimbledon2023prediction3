@@ -1,16 +1,58 @@
 [
   {
+    "objectID": "model.html",
+    "href": "model.html",
+    "title": "Model",
+    "section": "",
+    "text": "This prediction was based on a formula that weighed the total number of matches won/lost, number of upsets (where either the player beat someone of higher ranking or was beaten by someone with lower ranking), and total number of sets. The largest factor by far was the overall match record, and upsets and sets won/lost were worth a fraction of a single match. It also weighed matches played on the same surface as Wimbledon (grass) 2.5 times as much as those played on clay and hard court, and matches from more recent seasons more heavily (halving every year).\n\nFormula:\n\\[y_{odds} = \\frac{5}{2} \\cdot x_{grass} + 1 \\cdot x_{hard} + 1 \\cdot x_{clay},\\] where \\(x_i = 50 \\cdot (a_i - b_i) + 2 \\cdot (c_i - d_i) + \\frac{1}{2} \\cdot (e_i - f_i)\\), for \\(i =\\) {grass, hard, clay}. For each surface \\(i\\), \\(a_i =\\) number of wins, \\(b_i =\\) number of losses, \\(c_i =\\) number of upsets, \\(d_i =\\) number of time the player was upset, \\(e_i =\\) total number of sets won, and \\(f_i =\\) total number of sets lost.\nAfter the probability was determined for each player, a model predicting the probability of winning the entire tournament was run to determine the confidence intervals, which was then graphed (as seen on the front page).\nWhile I believe this prediction to be fairly accurate, as with all predictive models, especially in sports, there are numerous other factors that have not been considered. For example, it does not include the full match history of every player, which undermines those like Djokovic (who has had an impresssive 20-year career to say the least) and wildcards like Svitolina (who spent time away from the sport due to personal reasons)."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "wimbledon2023prediction3",
+    "title": "Wimbledon 2023: Men’s Singles and Women’s Singles",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Wimbledon is considered the most prestigious tournament in tennis, and this year, it takes place from July 3rd to July 16th. For this project, I tried to predict who would win the Men’s singles draw and the Women’s singles draw. The data for this project was sourced from a sports betting website that included files for every official ATP or WTA match from 2000 onwards. Once files for 2021, 2022, and 2023 were obtained, each desired statistic was counted for each player by year and surface. Then, they were combined in an intuitive manner to create a probability of winning the tournament. With a fairly high confidence interval, the three top contenders for Men’s singles are Alcaraz (~8%), Medvedev (~6.5%), and Djokovic (~6.5%), and the top contender for Women’s singles is Swiatek (~9%)."
+  },
+  {
+    "objectID": "index.html#mens",
+    "href": "index.html#mens",
+    "title": "Wimbledon 2023: Men’s Singles and Women’s Singles",
+    "section": "Men’s",
+    "text": "Men’s\n\n\n\n\n\nThis graph only takes into account matches from 2021-2023 which excludes some important data. For example, the majority of Djokovic’s historic 20-year career that includes 23 Grand Slam titles - seven of which are Wimbledon titles. Additionally, because it only accounts for the past 3 years, it weighs Medvedev’s recent-ish success more heavily than it should. In reality, Alcaraz and Djokovic have an about equal shot of winning Wimbledon this year, with Medvedev being lower than second."
+  },
+  {
+    "objectID": "index.html#womens",
+    "href": "index.html#womens",
+    "title": "Wimbledon 2023: Men’s Singles and Women’s Singles",
+    "section": "Women’s",
+    "text": "Women’s\n\n\n\n\n\nThis graph excludes the full match history of almost every player in this draw, so it almost completely excludes players like Svitolina who didn’t play on tour in the past few years due to injury/personal reasons. Other than that, I think it is fairly accurate."
+  },
+  {
+    "objectID": "sources.html",
+    "href": "sources.html",
+    "title": "Sources",
+    "section": "",
+    "text": "Almost all data for this project was drawn directly from http://www.tennis-data.co.uk/alldata.php, and last updated July 6th, 2023. It takes the files for the 2021, 2022, and last updated 2023 ATP and WTA seasons, which includes all official matches (including Grand Slams). The only other piece of data is the Wimbldon draw, which was compiled into an excel file by hand.\nOnce all data was collected, it was combined into two tibbles: one for ATP, and one for WTA. The following process was used identically for both.\nA tibble was created for each desired stat in the final tibble, with all of them also containing the columns “name”, “surface”, and “year”. There were six total - number of wins, number of losses, number of upsets, number of times was upset, number of sets won, and number of sets lost. Then, each tibble was combined into one by the three columns. A new column was also created using the formula found on the Model page, and then transformed into a probability column by dividing by its total sum."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "About Me\nMy name is Avery Zheng and for the 2023-2024 school year I will be a junior at Phillips Academy Andover. You can contact me at azheng25@andover.edu.\n\n\nAbout This Project\nThis project was created as part of Kane’s Data Science Bootcamp, and can be found at https://github.com/averyzheng-yay/wimbledon-2023-prediction."
+  },
+  {
+    "objectID": "page2.html",
+    "href": "page2.html",
+    "title": "Women’s Stats",
+    "section": "",
+    "text": "Disclaimer: These statistics are only drawn from the past three seasons (2021-2023)."
+  },
+  {
+    "objectID": "page1.html",
+    "href": "page1.html",
+    "title": "Men’s Stats",
+    "section": "",
+    "text": "Disclaimer: These statistics are only drawn from the past three seasons (2021-2023)."
   }
 ]

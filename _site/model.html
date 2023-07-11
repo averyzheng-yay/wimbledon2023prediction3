@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wimbledon 2023 Prediction - Wimbledon 2023: Men’s Singles and Women’s Singles</title>
+<title>Wimbledon 2023 Prediction - Model</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,6 +60,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -123,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Wimbledon 2023: Men’s Singles and Women’s Singles</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./model.html">Model</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -149,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./model.html" class="sidebar-item-text sidebar-link">
+  <a href="./model.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Model</span></a>
   </div>
 </li>
@@ -163,8 +165,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#mens" id="toc-mens" class="nav-link active" data-scroll-target="#mens">Men’s</a></li>
-  <li><a href="#womens" id="toc-womens" class="nav-link" data-scroll-target="#womens">Women’s</a></li>
+  <li><a href="#section1" id="toc-section1" class="nav-link active" data-scroll-target="#section1">Formula:</a></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Wimbledon 2023: Men’s Singles and Women’s Singles</h1>
+<h1 class="title">Model</h1>
 </div>
 
 
@@ -188,24 +189,12 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Wimbledon is considered the most prestigious tournament in tennis, and this year, it takes place from July 3rd to July 16th. For this project, I tried to predict who would win the Men’s singles draw and the Women’s singles draw. The data for this project was sourced from a sports betting website that included files for every official ATP or WTA match from 2000 onwards. Once files for 2021, 2022, and 2023 were obtained, each desired statistic was counted for each player by year and surface. Then, they were combined in an intuitive manner to create a probability of winning the tournament. With a fairly high confidence interval, the three top contenders for Men’s singles are Alcaraz (~8%), Medvedev (~6.5%), and Djokovic (~6.5%), and the top contender for Women’s singles is Swiatek (~9%).</p>
-<section id="mens" class="level2">
-<h2 class="anchored" data-anchor-id="mens">Men’s</h2>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>This graph only takes into account matches from 2021-2023 which excludes some important data. For example, the majority of Djokovic’s historic 20-year career that includes 23 Grand Slam titles - seven of which are Wimbledon titles. Additionally, because it only accounts for the past 3 years, it weighs Medvedev’s recent-ish success more heavily than it should. In reality, Alcaraz and Djokovic have an about equal shot of winning Wimbledon this year, with Medvedev being lower than second.</p>
-</section>
-<section id="womens" class="level2">
-<h2 class="anchored" data-anchor-id="womens">Women’s</h2>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>This graph excludes the full match history of almost every player in this draw, so it almost completely excludes players like Svitolina who didn’t play on tour in the past few years due to injury/personal reasons. Other than that, I think it is fairly accurate.</p>
+<p>This prediction was based on a formula that weighed the total number of matches won/lost, number of upsets (where either the player beat someone of higher ranking or was beaten by someone with lower ranking), and total number of sets. The largest factor by far was the overall match record, and upsets and sets won/lost were worth a fraction of a single match. It also weighed matches played on the same surface as Wimbledon (grass) 2.5 times as much as those played on clay and hard court, and matches from more recent seasons more heavily (halving every year).</p>
+<section id="section1" class="level3">
+<h3 class="anchored" data-anchor-id="section1">Formula:</h3>
+<p><span class="math display">\[y_{odds} = \frac{5}{2} \cdot x_{grass} + 1 \cdot x_{hard} + 1 \cdot x_{clay},\]</span> where <span class="math inline">\(x_i = 50 \cdot (a_i - b_i) + 2 \cdot (c_i - d_i) + \frac{1}{2} \cdot (e_i - f_i)\)</span>, for <span class="math inline">\(i =\)</span> {grass, hard, clay}. For each surface <span class="math inline">\(i\)</span>, <span class="math inline">\(a_i =\)</span> number of wins, <span class="math inline">\(b_i =\)</span> number of losses, <span class="math inline">\(c_i =\)</span> number of upsets, <span class="math inline">\(d_i =\)</span> number of time the player was upset, <span class="math inline">\(e_i =\)</span> total number of sets won, and <span class="math inline">\(f_i =\)</span> total number of sets lost.</p>
+<p>After the probability was determined for each player, a model predicting the probability of winning the entire tournament was run to determine the confidence intervals, which was then graphed (as seen on the front page).</p>
+<p>While I believe this prediction to be fairly accurate, as with all predictive models, especially in sports, there are numerous other factors that have not been considered. For example, it does not include the full match history of every player, which undermines those like Djokovic (who has had an impresssive 20-year career to say the least) and wildcards like Svitolina (who spent time away from the sport due to personal reasons).</p>
 
 
 </section>

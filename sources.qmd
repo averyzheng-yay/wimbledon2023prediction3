@@ -1,0 +1,10 @@
+---
+title: "Sources"
+editor: visual
+---
+
+Almost all data for this project was drawn directly from [http://www.tennis-data.co.uk/alldata.php](http://www.tennis-data.co.uk/alldata.php), and last updated July 6th, 2023. It takes the files for the 2021, 2022, and last updated 2023 ATP and WTA seasons, which includes all official matches (including Grand Slams). The only other piece of data is the Wimbldon draw, which was compiled into an excel file by hand. 
+
+Once all data was collected, it was combined into two tibbles: one for ATP, and one for WTA. The following process was used identically for both. 
+
+A tibble was created for each desired stat in the final tibble, with all of them also containing the columns "name", "surface", and "year". There were six total - number of wins, number of losses, number of upsets, number of times was upset, number of sets won, and number of sets lost. Then, each tibble was combined into one by the three columns. A new column was also created using the [formula found on the Model page](https://averyzheng-yay.quarto.pub/wimbledon2023prediction/model.html#section1), and then transformed into a probability column by dividing by its total sum. 

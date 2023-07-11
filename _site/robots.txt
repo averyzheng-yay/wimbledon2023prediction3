@@ -1,1 +1,1 @@
-Sitemap: https://13f67bd9-f080-405a-b825-bdd4312eddbd.netlify.app/sitemap.xml
+Sitemap: https://averyzheng-yay.quarto.pub/wimbledon2023prediction3/sitemap.xml

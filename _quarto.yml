@@ -2,18 +2,29 @@ project:
   type: website
 
 website:
-  title: "wimbledon2023prediction3"
+  title: "Wimbledon 2023 Prediction"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - page1.qmd
+      - page2.qmd
+      - sidebar:details
+  sidebar: 
+    - id: details
+      title: "Details"
+      style: "floating"
+      background: "#ffffff"
+      collapse-level: 1
+      contents: 
+        - about.qmd
+        - sources.qmd
+        - model.qmd
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
 
 

@@ -1,9 +1,8 @@
 ---
 title: "About"
 ---
+### About Me
+My name is [Avery Zheng](https://github.com/averyzheng-yay/) and for the 2023-2024 school year I will be a junior at Phillips Academy Andover. You can contact me at azheng25@andover.edu.
 
-About this site
-
-```{r}
-1 + 1
-```
+### About This Project
+This project was created as part of [Kane's Data Science Bootcamp](https://bootcamp.davidkane.info/), and can be found at [https://github.com/averyzheng-yay/wimbledon-2023-prediction](https://github.com/averyzheng-yay/wimbledon-2023-prediction/).
