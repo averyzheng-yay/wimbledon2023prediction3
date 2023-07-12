@@ -14,27 +14,6 @@ library(rgl)
 ```
 
 ## Men's
-
-```{r}
-#| echo: false
-#| warning: false
-#| label: data
-#write_csv(data, "all_matches.csv")
-```
-
-```{r}
-#| echo: false
-#| warning: false
-
-```
-
-```{r}
-#| echo: false
-#| warning: false
-
-#write_csv(selected_rows, "all_stats.csv")
-```
-
 ```{r}
 #| echo: false
 #| warning: false
