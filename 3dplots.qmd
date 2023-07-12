@@ -10,9 +10,100 @@ library(tidyverse)
 library(readxl)
 library(rayshader)
 library(rgl)
+library(png)
 ```
 
+## Men's
 ```{r}
+#| echo: false
+#| warning: false
+#| message: false
+pregraph1 <- read_csv("pregraph.csv")
 
+pregraph1$name <- factor(pregraph1$name, levels = c("alcaraz c.", "medvedev d.", "djokovic n.", "sinner j.", "rublev a.", "norrie c.", "tsitsipas s.", "fritz t.", "ruud c.", "zverev a.")) 
+
+tennisplot <- pregraph1 |> 
+  mutate(probability = as.numeric(probability)) |>
+  mutate(segment = cut(probability,
+                     breaks = c(-Inf, seq(-0.1, 0.2, 0.01), Inf),
+                     labels = seq(-0.11, 0.2, 0.01))) |>
+  summarize(total = n(), 
+            .by = c(name, segment)) |> 
+  mutate(name = as.factor(name)) |> 
+  mutate(segment = as.factor(segment)) |> 
+  ggplot() +
+  geom_tile(aes(x = reorder(name, segment), y = segment, fill = total), 
+            width = 0.9, height = 0.9) +
+  scale_fill_gradient(low = "lightblue", high = "blue") +
+  scale_color_continuous(limits = c(0, 1000)) +
+  theme_classic() +
+  scale_x_discrete(labels = c("C. Alcaraz", "D. Medvedev", "N. Djokovic", "J. Sinner", "A. Rublev", "C. Norrie", "S. Tsitsipas", "T. Fritz", "C. Ruud", "A. Zverev")) +
+  scale_y_discrete(breaks = c("-0.09", "-0.06", "-0.03", "0", "0.03", "0.06", "0.09", "0.12", "0.15", "0.18")) +
+  labs(x = "", y = "Probability",
+       title = "Men's Singles Top Ten Front Runners (Expected Posterior Distribution)",
+       subtitle = "Alcaraz, Medvedev, and Djokovic have the highest chances of winning.") +
+  theme(legend.position = "none") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+plot_gg(tennisplot,
+        width = 5.5,
+        zoom = 0.65,
+        theta = 25,
+        phi = 50,
+        sunangle = 225,
+        soliddepth = -0.5,
+        raytrace = FALSE,
+        windowsize = c(2048,1536))
+rglwidget()
+options(rgl.useNULL = TRUE)
+rgl.close()
+```
+
+## Women's
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+pregraphw1 <- read_csv("pregraphw.csv")
+
+pregraphw1$name <- factor(pregraphw1$name, levels = c("swiatek i.", "sabalenka a.", "jabeur o.", 
+                                                    "ostapenko j.", "rybakina e.", "kvitova p.", 
+                                                    "garcia c.", "pegula j.", "bencic b.", 
+                                                    "alexandrova e."))
+
+tennisplotw <- pregraphw1 |> 
+  mutate(probability = as.numeric(probability)) |>
+  mutate(segment = cut(probability,
+                     breaks = c(-Inf, seq(-0.1, 0.2, 0.01), Inf),
+                     labels = seq(-0.11, 0.2, 0.01))) |>
+  summarize(total = n(), 
+            .by = c(name, segment)) |> 
+  mutate(name = as.factor(name)) |> 
+  mutate(segment = as.factor(segment)) |> 
+  ggplot() +
+  geom_tile(aes(x = name, y = segment, fill = total), width = 0.9, height = 0.9) +
+  scale_fill_gradient(low = "thistle", high = "darkmagenta") +
+  scale_color_continuous(limits = c(0, 1000)) +
+  scale_x_discrete(labels = c("I. Swiatek", "A. Sabalenka", "O. Jabeur", "J. Ostapenko", "E. Rybakina", "P. Kvitova", "C. Garcia", "J. Pegula", "B. Bencic", "E. Alexandrova")) +
+  scale_y_discrete(breaks = c("-0.12", "-0.09", "-0.06", "-0.03", "0", "0.03", "0.06", "0.09", "0.12", "0.15", "0.18", "0.21")) +
+  theme_classic() +
+  labs(x = "", y = "Probability",
+       title = "Women's Singles Top Ten Front Runners (Expected Posterior Distribution)",
+       subtitle = "Swiatek has the highest chance of winning.") +
+  theme(legend.position = "none") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+plot_gg(tennisplotw,
+        width = 5.5,
+        zoom = 0.65,
+        theta = 25,
+        phi = 50,
+        sunangle = 225,
+        soliddepth = -0.5,
+        raytrace = FALSE,
+        windowsize = c(2048,1536))
+rglwidget()
+options(rgl.useNULL = TRUE)
+rgl.close()
 ```
 
